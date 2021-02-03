@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <title>Pre-Registration Course Request From</title>
+     <link rel="stylesheet" href="style.css" type="text/css"> 
+</head>
+<body>
+<div class="main">
+	<div class="register">
+		<h2>Register Here</h2><br>
+		<p>Pre-Registration Course Request From<br>[Fill-Up the form as per AIUB format]</p><br><br>
+		<form id="register" method="post">
+		<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name:<span style="color:black;font-weight:bold"></span></label>
+		<input type="text" name="fname" id="name" size="20" placeholder="Enter your Full Name"><br><br>
+
+        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Id:<span style="color:black;font-weight:bold"></span></label>
+		<input type="text" name="id" id="id" size="20" placeholder="Enter your Id"><br><br>
+
+		<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email:<span style="color:black;font-weight:bold"></span></label>
+		<input type="text" name="mailid" id="mailid" size="20" placeholder="Enter your Email-Id"><br><br>
+
+        <label>Department:<span style="color:black;font-weight:bold"></span></label>
+		<input type="checkbox" name="department" id="department" value="Department">
+		<label for="Department">CSE</label>&nbsp;
+
+		<input type="checkbox" name="department" id="department" value="Department">
+		<label for="Department">EEE</label>&nbsp;
+
+		<input type="checkbox" name="department" id="department" value="Department">
+		<label for="Department">BBA</label><br>
+        
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="department" id="department" value="Department">
+		<label for="Department">Other...</label><br><br>
+
+        <label for="cgpa" placeholder="Choose Option">CGPA:<span style="color:black;font-weight:bold"></span></label>
+        <select id="cgpa" name="cgpa">
+         <option value="cgpa 4">GPA 4</option>
+         <option value="below 4">below GPA 4 </option>
+         <option value="below 3.75">below GPA 3.75</option>
+         <option value="below 3.50">below GPA 3.50</option>
+         <option value="below 3.25">below GPA 3.25</option>
+         <option value="below 3.00">below GPA 3.00</option>
+         <option value="below 2.75">below GPA 2.75</option>
+         <option value="cgpa 2.50">GPA 2.50</option>
+         <option value="under probation">Under Probation</option>
+        </select><br><br>
+
+        <label>For which semester you want to take courses?<span style="color:black;font-weight:bold"></span></label><br><br>
+ 
+         <input type="radio" name="semester" id="semester">
+         <span id="1st">1st</span>&nbsp;
+         <input type="radio" name="semester" id="semester">
+         <span id="2nd">2nd</span>&nbsp;
+         <input type="radio" name="semester" id="semester">
+         <span id="3rd">3rd</span>&nbsp;
+         <input type="radio" name="semester" id="semester">
+         <span id="4th">4th</span>&nbsp;
+         <input type="radio" name="semester" id="semester">
+         <span id="5th">5th</span>&nbsp;<br>
+         <input type="radio" name="semester" id="semester">
+         <span id="6th">6th</span>&nbsp;
+         <input type="radio" name="semester" id="semester">
+         <span id="7th">7th</span>&nbsp;
+         <input type="radio" name="semester" id="semester">
+         <span id="8th">8th</span>&nbsp;
+         <input type="radio" name="semester" id="semester">
+         <span id="Other">Other</span><br><br>
+
+        <label>Name of the Courses:<span style="color:black;font-weight:bold"></span></label><br> 
+         
+        <textarea name="message" rows="5" cols="35"></textarea><br>
+
+        <input type="submit" value="Submit" name="submit" id="submit">
+    </form>
+	</div>
+</div>
+</body>
+</html> 
