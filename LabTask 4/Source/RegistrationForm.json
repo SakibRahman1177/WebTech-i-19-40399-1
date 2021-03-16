@@ -1,11 +1,8 @@
 [
-
- {
-   "name":"Saqib Rahman",
-    "email":"sakibrahman1177@gmail.com",
-    "username":"saqib",
+	{"name":"Saqib Rahman",
+	"email":"sakibrahman1177@gmail.com",
+    "username":"Saqib",
     "password":"#sakib1516",
     "gender":"male",
-    "dateOfBirth":"1999-09-24"
-  }
+    "dateOfBirth":"2021-03-26"}
 ]
