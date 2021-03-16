@@ -3,7 +3,7 @@
 <head>
   <title>Update Password</title>
 <style>
-
+.error {color: #FF0000;}
 h2{  font-style: bold;
        font-size: 40px;
        text-align: center; }
@@ -38,31 +38,83 @@ h2{  font-style: bold;
 <?php
 // define variables and set to empty values
 
-$current_passErr = $new_passErr = $retype_passErr = "";
-$current_pass = $new_pass = $retype_pass = "";
+$currentpasswordErr = $newpasswordErr = $retypepasswordErr = "";
+$currentpassword = $newpassword = $retypepassword = "";
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-  if (empty($_POST["current_pass"])) {
-    $current_passErr = "<span style='color: red;font-size: 15px'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Current password field is required</span>";
+  if (empty($_POST["currentpassword"])) {
+    $currentpasswordErr = "Current password field is required";
   } else {
-        if (!strcmp($current_pass, $new_pass) == 0) {
-              $current_passErr="Password is not correct";
-            }
-            $current_pass = test_input($_POST["current_pass"]);
+     $currentpassword = test_input($_POST["currentpassword"]);
+     
+     if(strlen($currentpassword)<8){
+     $currentpasswordErr = "Must not be less than eight (8) characters";
+     $currentpassword = "";
+  }
+  
+     elseif (!preg_match("/[@, #, $,  %]/",$currentpassword)) {
+       $currentpasswordErr ="Password must contain at least one of the  special characters (@, #, $,  %)";
+       $currentpassword = "";
+    }
+     else {
+         $currentpassword = test_input($_POST["currentpassword"]);
+     }
+    
    }
-   
 
-   if (empty($_POST["new_pass"])) {
-    $new_passErr = "<span style='color: red;font-size: 15px'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New password field is required</span>";
+if (empty($_POST["newpassword"])) {
+    $newpasswordErr = "New password field is required";
   } else {
-            $new_pass = test_input($_POST["new_pass"]);
-            if (!strcmp($new_pass, $retype_pass)==0) {
-              $retype_passErr = "<span style='color: red;font-size: 15px'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New Password & Retyped Password must be same!</span>";
+      $newpassword = test_input($_POST["newpassword"]);
+      if(strlen($newpassword)<8){
+      $newpasswordErr = "Must not be less than eight (8) characters";
+      $newpassword = "";
+  }
+  elseif (!preg_match("/[@, #, $,  %]/",$newpassword)) {
+      $newpasswordErr ="Password must contain at least one of the special characters (@, #, $,  %)";
+      $newpassword = "";
+    }
+
+  elseif (strcmp($newpassword, $currentpassword)==0) {
+        $newpasswordErr = "New Password should not be same as the Current Password!";
+        $newpassword = "";
             }
+            else {
+         $newpassword = test_input($_POST["newpassword"]);
+     }
+          
 
      }
+
+if (empty($_POST["retypepassword"])) {
+    $retypepasswordErr = "Retype password field is required";
+  } else {
+      $retypepassword = test_input($_POST["retypepassword"]);
+      if(strlen($retypepassword)<8){
+      $retypepasswordErr = "Must not be less than eight (8) characters";
+      $retypepassword = "";
+  }
+  elseif (!preg_match("/[@, #, $,  %]/",$retypepassword)) {
+      $retypepasswordErr ="Password must contain at least one of the special characters (@, #, $,  %)";
+      $retypepassword = "";
+    }
+
+  elseif (!strcmp($retypepassword, $newpassword)==0) {
+        $retypepasswordErr = "New Password must match with the Retype Password!";
+        $retypepassword = "";
+            }
+            else {
+         $retypepassword = test_input($_POST["retypepassword"]);
+     }
+     }
+}
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
 }
 ?> 
 
@@ -73,18 +125,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   Current Password : 
   <input type="text" size= "30" name="currentpassword" placeholder="Enter your old password" >
-  <span class="error">&nbsp; &nbsp;<br><?php echo $current_passErr;?></span>
+  <span class="error">&nbsp; &nbsp;<br><?php echo $currentpasswordErr;?></span>
   <br><br>
   
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   New Password :
   <input type="text" size="30" name="newpassword" placeholder="Enter your new password" >
-  <span class="error">&nbsp;&nbsp;<br> <?php echo $new_passErr;?></span>
+  <span class="error">&nbsp;&nbsp;<br> <?php echo $newpasswordErr;?></span>
   <br><br>
 
   Retype New Password : 
   <input type="text" size= "30" name="retypepassword" placeholder="Re-type your new password" >
-  <span class="error">&nbsp; &nbsp;<br><?php echo $retype_passErr;?></span>
+  <span class="error">&nbsp; &nbsp;<br><?php echo $retypepasswordErr;?></span>
   <br><br>
 
   <input type="submit" name="submit" value="Submit" size="30">  

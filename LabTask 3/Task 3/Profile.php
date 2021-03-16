@@ -28,14 +28,12 @@ h2{  font-style: bold;
 <body>
       <div style="background-color:silver;color:black;padding:10px;">
 
-    <form style="border: 5px;margin-left: 285px;margin-right: 285px;border-style: solid;border-color: black;padding: 1em;" action="page2/part2.php" method="post" enctype="multipart/form-data">
-
             <h2>PROFILE PICTURE</h2>
-            <img src="files/logo.png"><br><br>
-            <input type="file" name="fileToUpload" id="fileToUpload">
-            <br>
-            <hr>
-            <input type="submit" name="submit">
+            <img src="img_avatar.png" alt="Avatar" class="avatar">
+            <form action="Source Page/ProfileSource.php" method="post" enctype="multipart/form-data">
+  Select image to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload">
+  <input type="submit" value="Upload Image" name="submit">
     </form>
     </fieldset>
 </div>
